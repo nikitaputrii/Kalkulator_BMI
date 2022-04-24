@@ -75,7 +75,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-id-card alt"></i>
               <p>
@@ -85,7 +85,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="array_pop.php" class="nav-link">
+                <a href="array_pop.php" class="nav-link>
                   <i class="far fa-circle nav-icon"></i>
                   <p>array_pop</p>
                 </a>
@@ -309,8 +309,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="projek1.php" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="projek1.php" class="nav-link active">
               <i class="nav-icon fas fa-calculator alt"></i>
               <p>
                 Project 1
@@ -328,19 +328,138 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item active"><a href="#">Praktikum 6</a></li>
             </ol>
+          </div >
+        </div>
+        <div class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="alert alert-success alert-dismissable">
+                  <form action="projek1.php" method="post">
+                    <div class="form-group row">
+                      <label for="nama" class="col-12 col-form-label"><h5>Nama</h5></label> 
+                      <div class="col-12">
+                        <input id="nama" name="nama" placeholder="Masukkan nama" type="text" class="form-control">
+                      </div>
+                    </div> 
+                    <div class="form-group row">
+                      <label class="col-8"><h5>Jenis Kelamin</h5></label> 
+                      <div class="col-8 form group">
+                        <div class="form-check custom-control-inline">
+                          <input name="gender" id="gender_0" type="radio" class="form-check-input" value="Laki-laki"> 
+                          <label for="gender_0" class="form-check-label">Laki-Laki</label>
+                        </div>
+                        <div class="form-check custom-control-inline">
+                          <input name="gender" id="gender_1" type="radio" class="form-check-input" value="Perempuan"> 
+                          <label for="gender_1" class="form-check-label">Perempuan</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="date" class="col-12 col-form-label"><h5>Tanggal Pemeriksaan</h5></label> 
+                      <div class="col-12">
+                        <input id="tanggal" name="tanggal" placeholder="Masukkan tanggal hari ini" type="date" class="form-control">
+                      </div>
+                    </div> 
+                    <div class="form-group row">
+                      <label class="col-8 col-form-label" for="tb"><h5>Tinggi Badan (cm)</h5></label> 
+                      <div class="col-12">
+                        <input id="tb" name="tb" placeholder="Masukkan tinggi badan" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="bb" class="col-8 col-form-label"><h5>Berat Badan (kg)</h5></label> 
+                      <div class="col-12">
+                        <input id="bb" name="bb" placeholder="Masukkan berat badan" type="text" class="form-control">
+                      </div>
+                    </div> 
+                    <div class="form-group row">
+                      <div class="offset-4 col-8">
+                      <button name="ulang" type="reset" class="btn btn-danger">Ulang</button>
+                        <button id="hitung" name="hitung" type="submit" class="btn btn-primary">Hitung</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="alert alert-success kanan">
+                  <?php
+                  require_once 'bmi.php';
+                    
+                  $hitung = $_POST['hitung'];
+                  $nama = $_POST['nama'];
+                  $bb = number_format($_POST['bb'],1);
+                  $tb = $_POST['tb'];
+                  $bmi = number_format($bb / $tb**2 * 10000,1);
+                  $hasil = hitung($bmi);
+      
+                    echo "<br/>Halo, $nama";
+                    echo "<br/>Level status BMI Anda adalah <b>$hasil</b>";
+                    echo "<br/><p> Berat anda $bb kg dan tinggi anda $tb cm
+                    <br/> Index BMI anda : <b>$bmi</b><p/>";
+                  ?>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <?php
+                require_once 'bmipasien.php';
+
+                $nama = $_POST['nama'];
+                $gender = $_POST['gender'];
+                $berat = number_format($_POST['bb'],1);
+                $tinggi = $_POST['tb'];
+                $tanggal = $_POST['tanggal'];
+                ?>
+
+                <h3 style="text-align: center">Data Pasien</h3>
+                <table class="text-center" border="1" width="100%">
+                  <thead>
+                      <tr>
+                        <th>id</th><th>Tanggal Periksa</th><th>Kode</th><th>Nama</th><th>Gender</th>
+                        <th>Berat</th><th>Tinggi</th><th>BMI</th><th>Hasil</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $nomor = 1;
+                    foreach ($ps as $pas) {
+                        echo '<tr><td>'.$nomor.'</td>';
+                        echo '<td>'.$pas['tanggal'].'</td>';
+                        echo '<td>'.$pas['kode'].'</td>';
+                        echo '<td>'.$pas['nama'].'</td>';
+                        echo '<td>'.$pas['gender'].'</td>';
+                        echo '<td>'.$pas['bb'].'</td>';
+                        echo '<td>'.$pas['tb'].'</td>';
+                        echo '<td>'.$pas['bmi'].'</td>';
+                        echo '<td>'.$pas['hasil'].'</td></tr>';
+                        $nomor++;
+                      }
+                    ?>
+                    <tr>
+                      <td><?php echo '4';?></td>
+                      <td><?php echo "$tanggal";?></td>
+                      <td><?php echo 'P004';?></td>
+                      <td><?=$nama;?></td>
+                      <td><?=$gender;?></td>
+                      <td><?=$bb;?></td>
+                      <td><?=$tb;?></td>
+                      <td><?=$bmi;?></td>
+                      <td><?=$hasil;?></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
       </div>
     </div>
   </div>

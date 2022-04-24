@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -75,7 +79,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-id-card alt"></i>
               <p>
@@ -85,7 +89,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="array_pop.php" class="nav-link">
+                <a href="array_pop.php" class="nav-link active class="nav-item"">
                   <i class="far fa-circle nav-icon"></i>
                   <p>array_pop</p>
                 </a>
@@ -175,7 +179,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-desktop alt"></i>
               <p>
@@ -191,7 +195,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="f_form_nilai.php" class="nav-link">
+                <a href="f_form_nilai.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Function</p>
                 </a>
@@ -328,19 +332,57 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 3</a></li>
+              <li class="breadcrumb-item active">form_nilai</li>
             </ol>
-          </div>
+          </div >
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">Sistem Penilaian</div>
+                        <div class="card-body">
+                        <h5>Form Nilai Siswa</h5><hr>
+
+                            <?php
+                            require_once 'libfungsi.php';
+
+                            $nama_siswa = $_POST['nama'];
+                            $mata_kuliah = $_POST['matkul'];
+                            $nilai_uts = $_POST['nilai_uts'];
+                            $nilai_uas = $_POST['nilai_uas'];
+                            $nilai_tugas = $_POST['nilai_tugas'];
+                            $total = $nilai_uts + $nilai_uas + $nilai_tugas;
+                            $_nilai = $total/3;
+                            $hasil_ujian = kelulusan($_nilai);
+                        
+                            //grade huruf
+                            $peringkat = grade($_nilai);
+                            
+                            //keterangan grade
+                            $predikat = predikat($_nilai);
+
+                                echo '<br/>Nama : '.$nama_siswa;
+                                echo '<br/>Mata Kuliah : '.$mata_kuliah;
+                                echo '<br/>Nilai UTS : '.$nilai_uts;
+                                echo '<br/>Nilai UAS : '.$nilai_uas;
+                                echo '<br/>Nilai Tugas Praktikum : '.$nilai_tugas;
+                                echo '<br/>Keterangan : '.$hasil_ujian;
+                                echo '<br/>Grade : '.$peringkat;
+                                echo '<br/>Predikat : '.$predikat;
+                            ?>
+                        </div>
+                        <div class="card-footer">Develop By @Nikita @2022</div>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>

@@ -115,7 +115,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="array_buah.php" class="nav-link">
+                <a href="array_buah.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>array_buah</p>
                 </a>
@@ -328,19 +328,44 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 1</a></li>
+              <li class="breadcrumb-item active">array_buah</li>
             </ol>
-          </div>
-        </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
+          </div >
+        </div>       
+        <?php
+            $ar_buah = ["Mangga", "Pisang", "Durian", "Naga" ];
+            //cetak buah index ke 2
+            echo $ar_buah[2];
+            //cetak jumlah buah
+            echo '<br/>Jumlah buah '.count($ar_buah);
+
+            //cetak keseluruhan buah
+            echo '<ol>';
+            foreach($ar_buah as $buah) {
+                echo '<li>'.$buah.'</li>';
+            }
+            echo '</ol>';
+
+            //tambah buah
+            $ar_buah[]="Jambu";
+            //hapus buah index ke 1
+            unset($ar_buah[1]);
+            //ubah buah index ke 2 menjadi apel
+            $ar_buah[2]="Apel";
+            
+            //cetak seluruh buah dengan indexnya
+            echo '<ul>';
+            foreach($ar_buah as $k => $v) {
+                echo '<li> buah index - ' . $k . ' adalah '. $v . '</li>';
+            }
+            echo '</ul>'
+        ?>
       </div>
     </div>
   </div>

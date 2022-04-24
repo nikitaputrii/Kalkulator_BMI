@@ -75,7 +75,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-id-card alt"></i>
               <p>
@@ -204,7 +204,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cube alt"></i>
               <p>
@@ -214,7 +214,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="data_lingkaran.php" class="nav-link">
+                <a href="data_lingkaran.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>data_lingkaran</p>
                 </a>
@@ -328,19 +328,28 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 4</a></li>
+              <li class="breadcrumb-item active">data_lingkaran</li>
             </ol>
-          </div>
+          </div >
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
+        <?php
+            require_once "class_lingkaran.php";
+            echo "NILAI PHI ".Lingkaran::PHI;
+            $lingkar1 = new Lingkaran(10);
+            $lingkar2 = new Lingkaran(4);
+
+            echo "<br>Luas Lingkaran I : ".$lingkar1->getLuas();
+            echo "<br>Luas Lingkaran II : ".$lingkar2->getLuas();
+
+            echo "<br>Keliling Lingkaran I : ".$lingkar1->getKeliling();
+            echo "<br>Keliling Lingkaran II : ".$lingkar2->getKeliling();
+        ?>
       </div>
     </div>
   </div>

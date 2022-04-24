@@ -75,7 +75,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-id-card alt"></i>
               <p>
@@ -239,7 +239,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-lemon alt"></i>
               <p>
@@ -273,7 +273,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="class_account.php" class="nav-link">
+                <a href="class_account.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>class_account</p>
                 </a>
@@ -328,19 +328,84 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 5</a></li>
+              <li class="breadcrumb-item active">class_account</li>
             </ol>
-          </div>
+          </div >
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
+        <?php
+        class Account {
+            protected $no;
+            private $saldo;
+
+            //constructor class
+            function __construct($no, $saldo) {
+                $this->no = $no;
+                $this->saldo = $saldo;
+            }
+            public function deposit($uang) {
+                $this->saldo = $this->saldo + $uang;
+            }
+            public function withdraw($uang) {
+                $this->saldo = $this->saldo - $uang;
+            }
+            public function cetak() {
+                echo 'Nomor Account : '.$this->no;
+                echo '<br/>Saldo : '.$this->saldo;
+            }
+        }
+
+        class AccountBank extends Account {
+            public $customer;
+
+            function __construct($no, $saldo, $customer) {
+                parent::__construct($no, $saldo);
+                $this->customer = $customer;
+            }
+
+            public function transfer($ab_tujuan, $uang) {
+                $this->withdraw($uang);
+                $ab_tujuan->deposit($uang);
+                $this->biayaTransfer();
+            }
+
+            private function biayaTransfer() {
+                $this->withdraw(6000);
+            }
+
+            public function cetak() {
+                parent::cetak();
+                echo '<br/>Nama : '.$this->customer;
+            }
+            
+        }
+
+        $ac1 = new Account(123, 5000000);
+        $ac2 = new Account(456, 3000000);
+
+        echo $ac1->cetak();
+        echo '<hr>';
+        echo $ac2->cetak();
+
+        $ab1 = new AccountBank(123, 5000000, 'Ian');
+        $ab2 = new AccountBank(456, 9000000, 'Anna');
+
+        echo '<hr/>';
+        echo $ab1->cetak();
+        echo '<hr/>';
+        echo $ab2->cetak();
+
+        echo '<hr style="color:red"/>';
+        echo $ab1->transfer($ab2, 1000000);
+        echo $ab1->cetak();
+        echo '<hr/>';
+        echo $ab2->cetak();    
+        ?>
       </div>
     </div>
   </div>

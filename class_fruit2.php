@@ -75,7 +75,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-id-card alt"></i>
               <p>
@@ -239,7 +239,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-lemon alt"></i>
               <p>
@@ -255,7 +255,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="class_fruit2.php" class="nav-link">
+                <a href="class_fruit2.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>class_fruit2</p>
                 </a>
@@ -328,19 +328,37 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 5</a></li>
+              <li class="breadcrumb-item active">class_fruit2</li>
             </ol>
-          </div>
+          </div >
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
+        <?php
+        class Fruit  {
+            public $name;
+            protected $color;
+            private $weight;
+
+            public function set_color($c) {
+                return $this->color = $c;
+            }
+            public function set_weight($w) {
+                return $this->weight = $w;
+            }
+        }
+
+        $mango = new Fruit();
+        echo $mango->name = 'Mango';
+        echo '<br/>';
+        echo $mango-> set_color('Yellow');
+        echo '<br/>';
+        echo $mango-> set_weight('300');
+        ?>
       </div>
     </div>
   </div>

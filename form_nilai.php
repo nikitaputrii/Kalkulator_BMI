@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -75,7 +77,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-id-card alt"></i>
               <p>
@@ -90,19 +92,19 @@
                   <p>array_pop</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li>
                 <a href="array_push.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>array_push</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li>
                 <a href="array_shift.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>array_shift</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li>
                 <a href="array_unshift.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>array_unshift</p>
@@ -152,7 +154,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart alt"></i>
               <p>
@@ -168,7 +170,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="form_nilai.php" class="nav-link">
+                <a href="form_nilai.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>form_nilai</p>
                 </a>
@@ -328,19 +330,86 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 2</a></li>
+              <li class="breadcrumb-item active">form_nilai</li>
             </ol>
-          </div>
+          </div >
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">Sistem Penilaian</div>
+                        <div class="card-body">
+                            <h5>Form Nilai Siswa</h5><hr>
+                                <form action="nilai_siswa.php" method="POST">
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label">Nama Lengkap</label> 
+                                    <div class="col-8">
+                                    <input name="nama" placeholder="Nama Lengkap" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label">Mata Kuliah</label> 
+                                    <div class="col-8">
+                                    <select name="matkul" class="custom-select">
+                                        <option value="Dasar-Dasar Pemrograman">Dasar-Dasar Pemrograman</option>
+                                        <option value="Basis Data I">Basis Data I</option>
+                                        <option value="Pemrograman Web">Pemrograman Web</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label">Nilai UTS</label> 
+                                    <div class="col-8">
+                                    <input name="nilai_uts" placeholder="Nilai UTS" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label">Nilai UAS</label> 
+                                    <div class="col-8">
+                                    <input name="nilai_uas" placeholder="Nilai UAS" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label">Nilai Tugas/Praktikum</label> 
+                                    <div class="col-8">
+                                    <input name="nilai_tugas" placeholder="Nilai Tugas" type="text" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="offset-4 col-8">
+                                    <button name="proses" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                                </form>
+
+                                <?php
+                                $proses = $_GET['proses'];
+                                $nama_siswa = $_GET['nama'];
+                                $mata_kuliah = $_GET['matkul'];
+                                $nilai_uts = $_GET['nilai_uts'];
+                                $nilai_uas = $_GET['nilai_uas'];
+                                $nilai_tugas = $_GET['nilai_tugas'];
+
+                                    echo 'Proses : '.$proses;
+                                    echo '<br/>Nama : '.$nama_siswa;
+                                    echo '<br/>Mata Kuliah : '.$mata_kuliah;
+                                    echo '<br/>Nilai UTS : '.$nilai_uts;
+                                    echo '<br/>Nilai UAS : '.$nilai_uas;
+                                    echo '<br/>Nilai Tugas Praktikum : '.$nilai_tugas;
+                                ?>
+                        </div>
+                        <div class="card-footer">Develop By @Nikita @2022</div>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>

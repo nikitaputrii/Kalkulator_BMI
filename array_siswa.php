@@ -121,7 +121,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="array_siswa.php" class="nav-link">
+                <a href="array_siswa.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>array_siswa</p>
                 </a>
@@ -328,19 +328,49 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 1</a></li>
+              <li class="breadcrumb-item active">array_siswa</li>
             </ol>
-          </div>
+          </div >
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
+        <?php
+            $ns1=['id'=>1,'nim'=>'01101','uts'=>80,'uas'=>84,'tugas'=>78];
+            $ns2 = ['id'=>2,'nim'=>'01121','uts'=>70,'uas'=>50,'tugas'=>68];
+            $ns3 = ['id'=>3,'nim'=>'01130','uts'=>60,'uas'=>86,'tugas'=>70];
+            $ns4 = ['id'=>4,'nim'=>'01134','uts'=>90,'uas'=>91,'tugas'=>82];
+
+            $ar_nilai=[$ns1, $ns2 , $ns3, $ns4];
+        ?>
+        <h3>Daftar Nilai Mahasiswa</h3>
+        <table class="table table-dark table-hover" border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>No</th><th>NIM</th><th>UTS</th>
+                    <th>UAS</th><th>Tugas</th><th>Nilai Akhir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $nomor=1;
+                    foreach($ar_nilai as $ns) {
+                        echo '<tr><td>'.$nomor.'</td>';
+                        echo '<td>'.$ns['nim'].'</td>';
+                        echo '<td>'.$ns['uts'].'</td>';
+                        echo '<td>'.$ns['uas'].'</td>';
+                        echo '<td>'.$ns['tugas'].'</td>';
+                        $nilai_akhir = ($ns['uts'] + $ns['uas']+$ns['tugas'])/3;
+                        echo '<td>'.number_format($nilai_akhir,2,',','.').'</td>';
+                        echo '<tr/>';
+                        $nomor++;
+                    }
+                ?>
+            </tbody>
+        </table>
       </div>
     </div>
   </div>

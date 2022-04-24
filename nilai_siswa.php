@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,8 @@
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -75,7 +78,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-id-card alt"></i>
               <p>
@@ -152,7 +155,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart alt"></i>
               <p>
@@ -168,7 +171,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="form_nilai.php" class="nav-link">
+                <a href="form_nilai.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>form_nilai</p>
                 </a>
@@ -328,20 +331,90 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+            <hr>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-              <hr>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Praktikum 2</a></li>
+              <li class="breadcrumb-item active">nilai_siswa</li>
             </ol>
-          </div>
+          </div >
         </div>
-      <h5>Kumpulan Tugas dan Praktikum</h5>
-      <h5>Mata Kuliah Pemrograman Web 2022</h5>
-      <h5>Oleh :</h5>
-      <h5>Nikita Putri - TI05</h5>
-      </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">Sistem Penilaian</div>
+                            <div class="card-body">
+                                <h5>Form Nilai Siswa</h5><hr>
+
+                                <?php
+                                $nama_siswa = $_POST['nama'];
+                                $mata_kuliah = $_POST['matkul'];
+                                $nilai_uts = $_POST['nilai_uts'];
+                                $nilai_uas = $_POST['nilai_uas'];
+                                $nilai_tugas = $_POST['nilai_tugas'];
+                                $total = $nilai_uts + $nilai_uas + $nilai_tugas;
+                                $alpha = $total/3;
+                                if ($alpha <= 55){
+                                    $lulus = "Anda tidak lulus";
+                                } else{
+                                    $lulus = "Selamat anda lulus";
+                                }
+                                //grade huruf
+                                if ($alpha > 100){
+                                    $grade = "I";
+                                } elseif ($alpha >= 85){
+                                    $grade = "A";
+                                } elseif ($alpha >= 70){
+                                    $grade = "B";
+                                } elseif ($alpha >= 56){
+                                    $grade = "C";
+                                } elseif ($alpha >= 36){
+                                    $grade = "D";
+                                } elseif ($alpha >= 0){
+                                    $grade = "E";
+                                } else{
+                                    $grade = "I";
+                                }
+                                //keterangan grade
+                                switch ($grade){
+                                    case "A":
+                                        $ket = "Sangat memuaskan";
+                                        break;
+                                    case "B":
+                                        $ket = "Memuaskan";
+                                        break;
+                                    case "C":
+                                        $ket = "Cukup";
+                                        break;
+                                    case "D":
+                                        $ket = "Kurang";
+                                        break;
+                                    case "E":
+                                        $ket = "Sangat kurang";
+                                        break;
+                                    default :
+                                        $ket = "Tidak ada";
+                                }
+
+                                    echo '<br/>Nama : '.$nama_siswa;
+                                    echo '<br/>Mata Kuliah : '.$mata_kuliah;
+                                    echo '<br/>Nilai UTS : '.$nilai_uts;
+                                    echo '<br/>Nilai UAS : '.$nilai_uas;
+                                    echo '<br/>Nilai Tugas Praktikum : '.$nilai_tugas;
+                                    echo '<br/>Keterangan : '.$lulus;
+                                    echo '<br/>Huruf : '.$grade;
+                                    echo '<br/>Predikat : '.$ket;
+                                ?>
+                            </div>
+                            <div class="card-footer">Develop By @Nikita @2022</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
 
